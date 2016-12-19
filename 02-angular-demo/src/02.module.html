@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular hello world</title>
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="DemoController">
+    <p>
+        <input type="text" placeholder="请输入用户名" name="" ng-model="user.name">
+    </p>
+    <p><span>用户名： {{user.name}}</span></p>
+    <button ng-click="show()">show</button>
+</div>
+
+
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script>
+    /*
+     注册模块
+     第一个参数是这个模块的名字
+     第二个参数是这个模块所依赖的模块, 如果不依赖任何模块也必须传递第二个参数，如果没有传递第二个参数，angular.module就不是创建一个模块
+     angular.module 返回 刚刚创建的模块对象
+     */
+    var app = angular.module('myApp', []);
+
+    /*
+     创建一个控制器，所创建的控制器属于myApp模块
+     控制器函数的参数中有一个$scope
+     */
+    app.controller('DemoController', function ($scope) {
+        $scope.user = {};
+        $scope.user.name = 'Mike';
+        $scope.show = function () {
+            console.log($scope.user);
+        };
+    });
+</script>
+</body>
+
+</html>
