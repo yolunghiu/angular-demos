@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Controller</title>
+</head>
+
+<body ng-app="myModule">
+<table ng-controller="LoginController" border="1">
+    <tr>
+        <td>username</td>
+        <td><input type="text" placeholder="Enter your username" ng-model="user.name"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="password" placeholder="Enter your password" ng-model="user.password"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Login" ng-click="login()"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>{{message}}</td>
+    </tr>
+</table>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var module = angular.module('myModule', []);
+
+    module.controller('LoginController', ['$scope', function ($scope) {
+        // data
+        $scope.user = {
+            name: '',
+            password: ''
+        };
+
+        // action
+        $scope.login = function () {
+            console.log($scope.user);
+        };
+
+        $scope.message = 'Please enter your username';
+
+        // watch the change of username and give some feedback
+        $scope.$watch('user.name', function (newValue, oldValue) {
+            // username is not empty
+            if (newValue) {
+                if (newValue.length < 7) {
+                    $scope.message = 'Invalid username';
+                }
+                else {
+                    $scope.message = '';
+                }
+            } else {
+                // username is empty
+                $scope.message = 'Please enter your username';
+            }
+        });
+
+    }]);
+</script>
+</body>
+
+</html>
