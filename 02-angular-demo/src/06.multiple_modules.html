@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multiple modules in ng-app</title>
+</head>
+<body ng-app="app">
+<div ng-controller="controller1">
+    <button ng-click="click1()">click1</button>
+</div>
+
+<div ng-controller="controller2">
+    <button ng-click="click2()">click2</button>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    // first module and it's controller
+    var app1 = angular.module('app1', []);
+    app1.controller('controller1', ['$scope', function ($scope) {
+        $scope.click1 = function () {
+            console.log(111);
+        };
+    }]);
+
+    // second module and it's controller
+    var app2 = angular.module('app2', []);
+    app2.controller('controller2', ['$scope', function ($scope) {
+        $scope.click2 = function () {
+            console.log(222);
+        };
+    }]);
+
+    // parent module
+    var app = angular.module('app', ['app1', 'app2']);
+</script>
+</body>
+</html>

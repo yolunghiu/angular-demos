@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>use ng-bind-html</title>
+</head>
+<body ng-app="myApp" ng-init="username='zhangsan'">
+
+<!--in some case, maybe we want put some html tags in ng-bind attribute
+    like below
+-->
+<strong ng-bind="'<h1>' + username + '</h1>'"></strong><br>
+<!--but for some safety reasons, this can't be done-->
+
+
+<!--if you want to realize the above function, you should
+    1.include "angular-sanitize.js" in your application.
+    2.include ngSanitize in your module's dependencies
+-->
+<strong ng-bind-html="'<h1>' + username + '</h1>'"></strong><br>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script>
+    var app = angular.module('myApp', ['ngSanitize']);
+</script>
+</body>
+</html>

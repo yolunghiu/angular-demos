@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>use ng-bind to replace {{attr}}</title>
+</head>
+<body ng-app ng-init="username='zhangsan'">
+
+<!--method one-->
+<strong>{{username}}</strong><br>
+
+<!--method two-->
+<!--this method is better than above, because the expression won't show
+ when the page is loading -->
+<strong ng-bind="username"></strong><br>
+
+<!--in some case, maybe we want put some html tags in ng-bind attribute
+    like below
+-->
+<strong ng-bind="'<h1>' + username + '</h1>'"></strong><br>
+<!--but for some safety reasons, this can't be done-->
+
+<script src="../bower_components/angular/angular.js"></script>
+</body>
+</html>
