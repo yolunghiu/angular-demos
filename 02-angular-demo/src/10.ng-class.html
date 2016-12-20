@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-class</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<ul ng-app="myApp" ng-controller="repeatController">
+    <li ng-repeat="user in users" ng-class="{red: $even, green: $odd}" id="{{user.id}}">
+        <strong>name: {{user.name}}</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <i>age: {{user.age}}</i>
+    </li>
+</ul>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('repeatController', ['$scope', function ($scope) {
+        $scope.users = [];
+
+        for (var i = 0; i < 10; i++) {
+            var user = {
+                id: i,
+                name: 'user' + i,
+                age: parseInt(Math.random() * 30)
+            };
+
+            $scope.users.push(user);
+        }
+    }]);
+</script>
+</body>
+</html>

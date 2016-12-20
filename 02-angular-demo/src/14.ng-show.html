@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-class 指令</title>
+    <style>
+        .tips {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(100, 100, 100, .5);
+            font-size: 40px;
+            line-height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body ng-controller="ListController">
+<!-- ng-show 决定是否显示 ng-hide 是否隐藏 ng-if 是否存在 -->
+<div class="tips" ng-if="loading">
+    loading...
+</div>
+
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    angular.module('myApp', [])
+        .controller('ListController', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.loading = true;
+
+            $timeout(function () {
+                $scope.loading = false;
+
+                $timeout(function () {
+                    $scope.loading = true;
+                }, 3000);
+
+            }, 3000);
+        }]);
+</script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-xxx 其他指令</title>
+</head>
+
+<body ng-app>
+    <p>
+        <input type="checkbox" ng-model="checked">全选/取消全选</p>
+    <ul>
+        <!-- ng-checked 和 ng-selected 只会做数据到视图的同步，不会做视图到数据的同步 -->
+        <li>选项01
+            <input type="checkbox" ng-checked="checked">
+        </li>
+        <li>选项02
+            <input type="checkbox" ng-checked="checked">
+        </li>
+        <li>选项03
+            <input type="checkbox" ng-checked="checked">
+        </li>
+        <li>选项04
+            <input type="checkbox" ng-checked="checked">
+        </li>
+        <li>选项05
+            <input type="checkbox" ng-checked="checked">
+        </li>
+    </ul>
+    <script src="../bower_components/angular/angular.js"></script>
+</body>
+
+</html>

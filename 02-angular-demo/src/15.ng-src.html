@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-src</title>
+    <script src="../bower_components/angular/angular.js"></script>
+</head>
+
+<body ng-app ng-init="imgUrl='avatar.jpg'" ng-cloak>
+<!--
+    If use src attribute, there will be a 404 error
+    because before angular expression is parsed, it will be treat as a real address
+    ng-href is the same
+-->
+<img ng-src="{{imgUrl}}" alt="">
+<a ng-href="{{imgUrl}}">跳转到图片</a>
+</body>
+
+</html>
