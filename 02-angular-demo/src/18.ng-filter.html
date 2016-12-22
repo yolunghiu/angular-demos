@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-filter</title>
+</head>
+
+<body ng-app="myApp">
+
+<div>
+    <h2>filter in expression</h2>
+    <h4>currency filter</h4>
+    <strong>{{12 | currency}}</strong>
+    <hr>
+
+    <h4>number filter</h4>
+    <strong>{{1234 | number:2}}</strong>
+    <hr>
+</div>
+
+<div ng-controller="filterController as ctrl">
+    <h2>filter in controller</h2>
+    <strong>{{ctrl.money}}</strong><br>
+    <strong>{{ctrl.date}}</strong>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('filterController', ['$filter', function ($filter) {
+        this.money = $filter('currency')(12);
+        this.date = $filter('date')(new Date());
+    }]);
+</script>
+</body>
+
+</html>

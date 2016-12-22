@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-filter filter to process array</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myController">
+<div>
+    <p>匹配属性值中含有a的</p>
+    <ul>
+        <li ng-repeat="child in childrenArray | filter: 'a'">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+    <hr>
+
+    <p>匹配属性值中含有4的</p>
+    <ul>
+        <li ng-repeat="child in childrenArray | filter: 4">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+    <hr>
+
+    <p>参数是对象，匹配name属性中含有i的</p>
+    <ul>
+        <li ng-repeat="child in childrenArray | filter: {name : 'i'}">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+    <hr>
+
+    <p>参数是函数，指定返回age>4的</p>
+    <ul>
+        <li ng-repeat="child in childrenArray | filter: func">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+    <hr>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myController', ['$scope', function ($scope) {
+        $scope.childrenArray = [
+            {name: 'kimi', age: 3},
+            {name: 'cindy', age: 4},
+            {name: 'anglar', age: 4},
+            {name: 'shitou', age: 6},
+            {name: 'tiantian', age: 5}
+        ];
+
+        $scope.func = function (e) {
+            return e.age > 4;
+        }
+    }]);
+</script>
+</body>
+
+</html>

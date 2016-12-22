@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-filter</title>
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="myController">
+    <input ng-model="greeting" type="text"><br>
+    No filter: {{greeting}}<br>
+    Reverse: {{greeting|reverse}}<br>
+    Reverse + uppercase: {{greeting|reverse:true}}<br>
+    Reverse, filtered in controller: {{filteredGreeting}}<br>
+    Reverse + uppercase, filtered in controller: {{filteredGreetingUpper}}<br>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+
+    // customized filter to reverse string
+    app.filter('reverse', function () {
+        return function (input, uppercase) {
+            input = input || '';
+            var out = '';
+            for (var i = 0; i < input.length; i++) {
+                out = input.charAt(i) + out;
+            }
+            // conditional based on optional argument
+            if (uppercase) {
+                out = out.toUpperCase();
+            }
+            return out;
+        };
+    });
+
+    app.controller('myController', ['$scope', 'reverseFilter', function ($scope, reverseFilter) {
+        $scope.greeting = 'hello';
+        $scope.filteredGreeting = reverseFilter($scope.greeting);
+        $scope.filteredGreetingUpper = reverseFilter($scope.greeting, true);
+    }]);
+</script>
+</body>
+
+</html>
