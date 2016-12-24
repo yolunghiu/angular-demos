@@ -6,8 +6,8 @@
     <title>ng-filter filter to process array</title>
 </head>
 
-<body ng-app="myApp" ng-controller="myController">
-<div>
+<body ng-app="myApp">
+<div ng-controller="myController">
     <p>匹配属性值中含有a的</p>
     <ul>
         <li ng-repeat="child in childrenArray | filter: 'a'">
@@ -41,9 +41,21 @@
     <hr>
 </div>
 
+<hr>
+<hr>
+<div ng-controller="myController2">
+    <ul>
+        <li ng-repeat="child in childrenArray">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+</div>
+
 <script src="../bower_components/angular/angular.js"></script>
 <script>
     var app = angular.module('myApp', []);
+
+    // 这里定义的都是用表达式的形式调用filter时用到的东西
     app.controller('myController', ['$scope', function ($scope) {
         $scope.childrenArray = [
             {name: 'kimi', age: 3},
@@ -56,6 +68,19 @@
         $scope.func = function (e) {
             return e.age > 4;
         }
+    }]);
+
+    // 这里定义在controller中调用filter时用到的东西
+    app.controller('myController2', ['$scope', 'filterFilter', function ($scope, filterFilter) {
+        $scope.childrenArray = [
+            {name: 'kimi', age: 3},
+            {name: 'cindy', age: 4},
+            {name: 'anglar', age: 4},
+            {name: 'shitou', age: 6},
+            {name: 'tiantian', age: 5}
+        ];
+
+        $scope.childrenArray = filterFilter($scope.childrenArray, {name: 'kimi'});
     }]);
 </script>
 </body>

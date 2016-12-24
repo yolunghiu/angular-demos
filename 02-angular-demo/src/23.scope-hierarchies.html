@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-filter</title>
+    <style>
+        .show-scope-demo.ng-scope,
+        .show-scope-demo .ng-scope {
+            border: 1px solid red;
+            margin: 3px;
+        }
+    </style>
+</head>
+
+<body ng-app="scopeExample">
+
+<p>每个angular app只有一个root scope, 但可以有多个子scope</p>
+<p>
+    angular从{{}}表达式取值时，先去找儿子scope，如果没有，再去root scope中找
+</p>
+
+<div class="show-scope-demo">
+    <div ng-controller="GreetController">
+        Hello {{name}}!
+    </div>
+    <div ng-controller="ListController">
+        <ol>
+            <li ng-repeat="name in names">{{name}} from {{department}}</li>
+        </ol>
+    </div>
+</div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    angular.module('scopeExample', [])
+        .controller('GreetController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.name = 'World';
+            $rootScope.department = 'Angular';
+        }])
+        .controller('ListController', ['$scope', function ($scope) {
+            $scope.names = ['Igor', 'Misko', 'Vojta'];
+        }]);
+</script>
+</body>
+
+</html>
