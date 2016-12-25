@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ng-filter filter function</title>
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="myController">
+    <ul>
+        <!-- 如果filterType是{}，这个filter就失效了-->
+        <li ng-repeat="child in childrenArray | filter: filterType: func">
+            {{child.name}} : {{child.age}}
+        </li>
+    </ul>
+    <hr>
+
+    <button ng-click="testEquals()">aa</button>
+</div>
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+
+    // 这里定义的都是用表达式的形式调用filter时用到的东西
+    app.controller('myController', ['$scope', function ($scope) {
+        $scope.childrenArray = [
+            {name: 'kimi', age: 3, done: true},
+            {name: 'cindy', age: 4, done: true},
+            {name: 'anglar', age: 4, done: true},
+            {name: 'shitou', age: 6, done: true},
+            {name: 'tiantian', age: 5, done: true}
+        ];
+
+        $scope.filterType = {done: false};
+
+        // 从输出来看，source指的是item，target是filterType
+        $scope.func = function (source, target) {
+            console.log('source:'+source);
+            console.log('target:'+target);
+            return angular.equals(source, target);
+        };
+
+    }]);
+
+    // 这里定义在controller中调用filter时用到的东西
+    app.controller('myController2', ['$scope', 'filterFilter', function ($scope, filterFilter) {
+        $scope.childrenArray = [
+            {name: 'kimi', age: 3},
+            {name: 'cindy', age: 4},
+            {name: 'anglar', age: 4},
+            {name: 'shitou', age: 6},
+            {name: 'tiantian', age: 5}
+        ];
+
+        $scope.childrenArray = filterFilter($scope.childrenArray, {name: 'kimi'});
+    }]);
+</script>
+</body>
+
+</html>
