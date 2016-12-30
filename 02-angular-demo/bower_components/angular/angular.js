@@ -19672,7 +19672,7 @@ function $TemplateRequestProvider() {
    *
    * @return {Promise} a promise for the HTTP response data of the given URL.
    *
-   * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
+   * @property {number} totalPendingRequests totalItems amount of pending template requests being downloaded.
    */
   this.$get = ['$exceptionHandler', '$templateCache', '$http', '$q', '$sce',
     function($exceptionHandler, $templateCache, $http, $q, $sce) {

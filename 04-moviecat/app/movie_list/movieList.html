@@ -1,0 +1,47 @@
+<h1 class="page-header">{{title}}</h1>
+<h3>{{message}}</h3>
+
+<!--电影数据-->
+<div class="list-group" ng-repeat="info in infos">
+	<a href="#" class="list-group-item">
+		<span class="badge">{{info.rating.average}}</span>
+		<div class="media">
+			<div class="media-left"><img ng-src="{{info.images.small}}" alt="111"></div>
+			<div class="media-body">
+				<h4 class="media-heading">{{info.title}}</h4>
+				<p>类型：<span ng-repeat="item in info.genres">{{item}}<b ng-if="!$last">、</b></span></p>
+				<p>演员: <span ng-repeat="item in info.casts">{{item.name}}<b ng-if="!$last">、</b></span></p>
+				<p>导演: <span ng-repeat="item in info.directors">{{item.name}}<b ng-if="!$last">、</b></span></p>
+			</div>
+		</div>
+	</a>
+</div>
+
+<!-- 加载动画-->
+<div class="mask" ng-class="{hide:!loading}">
+	<div class="sk-circle">
+		<div class="sk-circle1 sk-child"></div>
+		<div class="sk-circle2 sk-child"></div>
+		<div class="sk-circle3 sk-child"></div>
+		<div class="sk-circle4 sk-child"></div>
+		<div class="sk-circle5 sk-child"></div>
+		<div class="sk-circle6 sk-child"></div>
+		<div class="sk-circle7 sk-child"></div>
+		<div class="sk-circle8 sk-child"></div>
+		<div class="sk-circle9 sk-child"></div>
+		<div class="sk-circle10 sk-child"></div>
+		<div class="sk-circle11 sk-child"></div>
+		<div class="sk-circle12 sk-child"></div>
+	</div>
+</div>
+
+<!--页面下方控制部分-->
+<div ng-show="!loading">
+	<p>共：{{totalItems}}条记录，第{{pageNumber}}/{{totalPages}}页</p>
+	<nav>
+		<ul class="pager">
+			<li ng-class="{disabled:pageNumber<=1}"><a ng-click="previous()">Previous</a></li>
+			<li ng-class="{disabled:pageNumber>=totalPages}"><a ng-click="next()">Next</a></li>
+		</ul>
+	</nav>
+</div>
