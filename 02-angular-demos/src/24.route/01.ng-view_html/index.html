@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<script src="//cdn.bootcss.com/angular.js/1.4.14/angular.min.js"></script>
-<script src="//cdn.bootcss.com/angular.js/1.4.14/angular-route.min.js"></script>
+<script src="//cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+<script src="//cdn.bootcss.com/angular.js/1.6.1/angular-route.js"></script>
 <body ng-app="myApp">
 
-<p><a href="#/">Main</a></p>
+<p><a href="#!/">Main</a></p>
 
-<a href="#/red">Red</a>
-<a href="#/green">Green</a>
-<a href="#/blue">Blue</a>
+<a href="#!/red">Red</a>
+<a href="#!/green">Green</a>
+<a href="#!/blue">Blue</a>
 
 <div ng-view></div>
 
@@ -30,7 +30,5 @@
             });
     });
 </script>
-
-<p>Click on the links to navigate to "red.htm", "green.htm", "blue.htm", or back to "main.htm"</p>
 </body>
 </html>

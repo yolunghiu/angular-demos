@@ -11,23 +11,23 @@
 			});
 	}]);
 
-	movieListModule.controller('MovieListController', ['$scope', '$route', '$routeParams', 'JSONPService', function ($scope, $route, $routeParams, JSONPService) {
+	movieListModule.controller('MovieListController', ['$scope', '$route', '$routeParams', 'JSONPService', 'APPConfig', function ($scope, $route, $routeParams, JSONPService, APPConfig) {
 		$scope.loading = true;	// 是否是正在加载数据的状态
 
 		$scope.infos = [];	// 所有电影数据
-		$scope.title = '';	// 该模块的标题
+		$scope.title = 'Loading...';	// 该模块的标题
 		$scope.message = '';	// 提示信息
 		$scope.totalItems = 0;	// 电影记录总数
 		$scope.totalPages = 0;	// 总页数
 		$scope.pageNumber = $routeParams.pageNumber; // 当前页码
 		$scope.category = $routeParams.category;
-		var count = 10; // 每页的记录数：10条
+		var count = APPConfig.itemCount; // 每页的记录数：10条
 		var start = ($scope.pageNumber - 1) * count; // 从这条记录开始
 
-
-		JSONPService.jsonp('http://api.douban.com/v2/movie/' + $scope.category, {
+		JSONPService.jsonp(APPConfig.listApiAddress + $scope.category, {
 			count: count,
-			start: start
+			start: start,
+			q: $routeParams.q
 		}, function (response) {
 			$scope.infos = response.subjects;
 			$scope.title = response.title;

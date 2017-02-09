@@ -10,13 +10,12 @@
 <div ng-controller="myController">
     <ul>
         <!-- 如果filterType是{}，这个filter就失效了-->
+        <!-- 下面代码所做的就是拿每一个child和filterType传到func里进行比较-->
         <li ng-repeat="child in childrenArray | filter: filterType: func">
             {{child.name}} : {{child.age}}
         </li>
     </ul>
     <hr>
-
-    <button ng-click="testEquals()">aa</button>
 </div>
 <script src="../bower_components/angular/angular.js"></script>
 <script>

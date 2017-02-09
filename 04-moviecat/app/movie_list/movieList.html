@@ -3,7 +3,7 @@
 
 <!--电影数据-->
 <div class="list-group" ng-repeat="info in infos">
-	<a href="#" class="list-group-item">
+	<a href="#/detail/{{info.id}}" class="list-group-item">
 		<span class="badge">{{info.rating.average}}</span>
 		<div class="media">
 			<div class="media-left"><img ng-src="{{info.images.small}}" alt="111"></div>

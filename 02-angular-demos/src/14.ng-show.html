@@ -25,7 +25,6 @@
     loading...
 </div>
 
-
 <script src="../bower_components/angular/angular.js"></script>
 <script>
     angular.module('myApp', [])
@@ -34,14 +33,8 @@
 
             $timeout(function () {
                 $scope.loading = false;
-
-                $timeout(function () {
-                    $scope.loading = true;
-                }, 3000);
-
             }, 3000);
         }]);
 </script>
 </body>
-
 </html>
