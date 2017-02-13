@@ -14,3 +14,7 @@
 ## 04-moviecat
 
 - 用angular结合豆瓣api实现的电影信息展示app
+
+## 05-ngAnimation
+
+- 利用angular-animate模块实现的换页动画效果

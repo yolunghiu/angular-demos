@@ -1,0 +1,64 @@
+/* app框架的样式*/
+.page {
+    bottom: 0;
+    padding-top: 200px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.page h1 {
+    font-size: 60px;
+}
+
+.page a {
+    margin-top: 50px;
+}
+
+/* 每个页面单独的样式*/
+.page-home {
+    background: #00D0BC;
+    color: #00907c;
+}
+
+.page-about {
+    background: #E59400;
+    color: #a55400;
+}
+
+.page-contact {
+    background: #ffa6bb;
+    color: #9e0000;
+}
+
+/* 动画*/
+/* rotate and fall */
+@keyframes rotateFall {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+        animation-timing-function: ease-out;
+    }
+    40% {
+        transform: rotateZ(17deg);
+    }
+    60% {
+        transform: rotateZ(16deg);
+    }
+    100% {
+        transform: translateY(100%) rotateZ(17deg);
+    }
+}
+
+.ng-enter {
+    z-index: 8888;
+}
+
+.ng-leave {
+    z-index: 9999;
+    transform-origin: 0 0;
+    animation: rotateFall 1s both ease-in;
+}
